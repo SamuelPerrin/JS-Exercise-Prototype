@@ -9,15 +9,15 @@
 
 // EXAMPLE SOLUTION CODE:
 function Airplane(name) {
-    this.name = name;
-    this.isFlying = false;
-  }
-  Airplane.prototype.takeOff = function () {
-    this.isFlying = true;
-  };
-  Airplane.prototype.land = function () {
-    this.isFlying = false;
-  };
+  this.name = name;
+  this.isFlying = false;
+}
+Airplane.prototype.takeOff = function () {
+  this.isFlying = true;
+};
+Airplane.prototype.land = function () {
+  this.isFlying = false;
+};
   
   
   /*
@@ -44,9 +44,9 @@ function Person(name,age) {
   this.age = age;
   this.stomach = [];
 }
-Person.prototype.eat = function (edible) {
+Person.prototype.eat = function (food) {
   if (this.stomach.length < 10) {
-    this.stomach.push(edible)
+    this.stomach.push(food)
   }
 }
 Person.prototype.poop = function () {
@@ -105,18 +105,23 @@ Car.prototype.drive = function (distance) {
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
-  }
- 
+function Baby(name,age,favoriteToy) {
+  Person.call(this,name,age);
+  this.favoriteToy = favoriteToy;
+}
+
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function () {
+  return `Playing with ${this.favoriteToy}`
+}
   
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. Outside of a specific context, the `this` keyword refers to the global object, which in a browser is Window.
+    2. When `this` is used in the context of an object's method or property, implicit binding binds `this` to the object that is to the left of the dot.
+    3. When `this` is used in the context of a constructor function invoked with the `new` keyword, it refers to the object that the function will return.
+    4. When `this` is used in the context of a method like .apply(), .call(), or .bind(), it is explicit binding.
   */
   
   
